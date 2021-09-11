@@ -77,6 +77,31 @@ there are some differences between this package's support for resources and
 Google's usage of those patterns. See ["Differences from AIP /
 googleapis"](#differences-from-aip--googleapis) for more on this.
 
+## Installation
+
+It's recommended you install `protoc-gen-go-resource` the same way you install
+other build tools, like
+[grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway), namely by
+describing it as a ["tool"
+dependency](https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module),
+i.e. a top-level `tools.go` file along these lines:
+
+```go
+// +build tools
+
+package tools
+
+import (
+	_ "github.com/ucarion/protoc-gen-go-resource/cmd/protoc-gen-go-resource"
+)
+```
+
+You can then install the tool by running:
+
+```bash
+go install github.com/ucarion/protoc-gen-go-resource/cmd/protoc-gen-go-resource
+```
+
 ## Supported Functionality
 
 This section details the features supported in this package. Note that all the
