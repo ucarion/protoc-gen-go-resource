@@ -381,3 +381,28 @@ the name field not existing to be an error.
 
 `AdGroupAd` in the previous section is an example of a message that specifies
 `name` as the name field, but doesn't have a `name` field.
+
+### No support for `child_type`
+
+[AIP-122](https://google.aip.dev/122#fields-representing-a-resources-parent)
+documents that, for resources which may have multiple different "parent" types,
+`google.api.resource_reference` may use `child_type` instead of `type` to
+indicate that the referred-to type is any one of the types which may be a parent
+of the given `child_type`.
+
+This package does not support `child_type`, because such support would require
+that this package be aware of the parent-child relationships of all resources.
+This information is not explicitly provided in the annotations this package
+understands. Instead, parent-child relationships are implicit in the shape of
+the patterns of resource names.
+
+Determining parent-child relationships from annotations would require doing some
+inference based on the patterns of names for each type. Although this is doable,
+for the result to be usable in practice, some additional tooling would be
+required to make it clear what parent/child relationships the code generator is
+inferring, so that developers can debug what's going wrong if the generated code
+isn't as expected.
+
+As a result, `child_type` support may be added in the future, but will not be
+included without additional tooling for users to be able to gain insight into
+the code generator's inferences.
