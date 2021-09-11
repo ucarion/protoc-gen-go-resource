@@ -102,6 +102,34 @@ You can then install the tool by running:
 go install github.com/ucarion/protoc-gen-go-resource/cmd/protoc-gen-go-resource
 ```
 
+You can then invoke the code generator from `protoc` using `--go-resource_...`
+command-line arguments to `protoc`. For example, if you normally run the
+following to generate your code from `.proto` files:
+
+```bash
+protoc -I myprotos --go_out=. --go_opt=paths=source_relative foo.proto
+```
+
+Then you would run the following, essentially just replacing `--go_...` with
+`--go-resource_...`:
+
+```bash
+protoc -I myprotos --go-resource_out=. --go-resource_opt=paths=source_relative foo.proto
+```
+
+You can invoke the two at once by running:
+
+```bash
+protoc -I myprotos \
+  --go_out=. --go_opt=paths=source_relative \
+  --go-resource_out=. --go-resource_opt=paths=source_relative \
+  foo.proto
+```
+
+Under the hood, this works because `protoc` looks for executables named
+`protoc-gen-XXX` whenever it receives `--XXX_...` parameters that it doesn't
+recognize.
+
 ## Supported Functionality
 
 This section details the features supported in this package. Note that all the
