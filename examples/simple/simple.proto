@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package simple;
+
+option go_package = "example.com/simple";
+
+import "google/api/resource.proto";
+
+message Thing {
+  option (google.api.resource) = {
+    type: "example.com/Thing"
+    pattern: "things/{thing}"
+  };
+
+  string name = 1;
+}
+
+message ProjectThing {
+  option (google.api.resource) = {
+    type: "example.com/ProjectThing"
+    pattern: "projects/{project}/things/{thing}"
+  };
+
+  string name = 1;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package namefield;
+
+option go_package = "example.com/namefield";
+
+import "google/api/resource.proto";
+
+message Person {
+  option (google.api.resource) = {
+    type: "example.com/Person"
+    pattern: "persons/{person}"
+    name_field: "person_name"
+  };
+
+  string person_name = 1;
+}

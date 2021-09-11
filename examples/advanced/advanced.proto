@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package simple;
+
+option go_package = "example.com/advanced";
+
+import "google/api/resource.proto";
+
+message MultiPattern {
+  option (google.api.resource) = {
+    type: "example.com/MultiPattern"
+    pattern: "pattern1/{pattern1}"
+    pattern: "pattern2/{pattern2}"
+  };
+
+  string name = 1;
+}
+
+option (google.api.resource_definition) = {
+  type: "example.com/ExternallyDefined"
+  pattern: "externallyDefined/{externallyDefined}"
+};
+
+message Referent {
+  option (google.api.resource) = {
+    type: "example.com/Referent"
+    pattern: "referent/{referent}"
+  };
+
+  string name = 1;
+}
+
+message Referrer {
+  string referent = 1 [(google.api.resource_reference) = {
+    type: "example.com/Referent"
+  }];
+
+  string externally_defined = 2 [(google.api.resource_reference) = {
+    type: "example.com/ExternallyDefined"
+  }];
+}
+
+message AlternateNameField {
+  option (google.api.resource) = {
+    type: "example.com/AlternateNameField"
+    pattern: "alternateNameField/{alternate_name_field}"
+    name_field: "alternate_name_field"
+  };
+
+  string alternate_name_field = 1;
+}

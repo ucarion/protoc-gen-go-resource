@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package multipattern;
+
+option go_package = "example.com/multipattern";
+
+import "google/api/resource.proto";
+
+message Book {
+  option (google.api.resource) = {
+    type: "example.com/Book"
+    pattern: "publishers/{publisher}/books/{book}"
+    pattern: "authors/{author}/books/{book}"
+  };
+
+  string name = 1;
+}
