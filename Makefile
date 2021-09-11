@@ -14,8 +14,10 @@ protos-example:
 
 .PHONY: clean
 clean:
-	rm -r generated/example.com/external
-	rm -r generated/example.com/multipattern
-	rm -r generated/example.com/namefield
-	rm -r generated/example.com/reference
-	rm -r generated/example.com/simple
+	rm -rf generated/github.com
+	rm -rf generated/google.golang.org
+	rm -rf generated/example.com/external
+	rm -rf generated/example.com/multipattern
+	rm -rf generated/example.com/namefield
+	rm -rf generated/example.com/reference
+	rm -rf generated/example.com/simple
