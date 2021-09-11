@@ -1,4 +1,4 @@
-module github.com/ucarion/protoc-gen-resource
+module github.com/ucarion/protoc-gen-go-resource
 
 go 1.16
 
